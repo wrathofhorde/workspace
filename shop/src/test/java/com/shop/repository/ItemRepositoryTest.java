@@ -1,4 +1,5 @@
 package com.shop.repository;
+
 import com.shop.constant.ItemSellStatus;
 import com.shop.entity.Item;
 
@@ -56,6 +57,61 @@ public class ItemRepositoryTest {
 
     for (Item item : itemList) {
       System.out.println(item.toString());
+    }
+  }
+
+  @Test
+  @DisplayName("상품 OR 테스트")
+  public void findByItemNmOrItemDetailTest() {
+    this.createItemList();
+    List<Item> itemList = itemRepository.findByItemNmOrItemDetail("테스트 상품 1", "테스트 상품 상세 설명 3");
+
+    for (Item item : itemList) {
+      System.out.println(item);
+    }
+  }
+
+  @Test
+  @DisplayName("상품 가격 테스트")
+  public void findByPriceLessThan() {
+    this.createItemList();
+    List<Item> itemList = itemRepository.findByPriceLessThan(10002);
+
+    for (Item item : itemList) {
+      System.out.println(item);
+    }
+  }
+
+  @Test
+  @DisplayName("상품 가격 정렬테스트")
+  public void findByPriceLessThanOrderByPriceDesc() {
+    this.createItemList();
+    List<Item> itemList = itemRepository.findByPriceLessThanOrderByPriceDesc(10002);
+
+    for (Item item : itemList) {
+      System.out.println(item);
+    }
+  }
+
+  @Test
+  @DisplayName("상품 @Query 테스트")
+  public void findByItemDetail() {
+    this.createItemList();
+    List<Item> itemList = itemRepository.findByItemDetail("테스트 상품 상세 설명");
+
+    for (Item item : itemList) {
+      System.out.println(item);
+    }
+  }
+
+  @Test
+  @DisplayName("상품 @Query Native 테스트")
+  public void findByItemDetailByNative() {
+    this.createItemList();
+    List<Item> itemList = itemRepository.findByItemDetailByNative("테스트 상품 상세 설명");
+
+    for (Item item : itemList) {
+      System.out.println(item);
     }
   }
 }
