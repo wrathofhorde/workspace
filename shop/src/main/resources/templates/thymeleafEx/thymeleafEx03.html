@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title th:text="${title}">Title</title>
+  </head>
+  <body>
+    <p th:text="${data}">Hello, thymeleaf</p>
+    <style>
+      table {
+        text-align: center;
+        border-collapse: collapse;
+      }
+      td {
+        padding: 5px 10px;
+      }
+    </style>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <td>순번</td>
+          <td>상품명</td>
+          <td>상품설명</td>
+          <td>가격</td>
+          <td>상품 등록일</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="itemDto, status: ${itemDtoList}">
+          <td th:text="${status.index}"></td>
+          <td th:text="${itemDto.itemNm}"></td>
+          <td th:text="${itemDto.itemDetail}"></td>
+          <td th:text="${itemDto.price}"></td>
+          <td th:text="${itemDto.regTime}"></td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <div>
+      <a th:href="@{/thymeleaf/ex01}">ex01로 이동</a>
+    </div>
+    <div>
+      <a th:href="@{http://www.thymeleaf.org}">타임리프 홈으로 이동</a>
+    </div>
+    <div>
+      <a th:href="@{/}">홈으로 이동</a>
+    </div>
+  </body>
+</html>
