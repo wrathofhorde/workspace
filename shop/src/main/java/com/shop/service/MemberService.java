@@ -24,7 +24,7 @@ public class MemberService {
         Member findMember = memberRepository.findByEmail(member.getEmail());
 
         if (findMember != null) {
-            throw new IllegalStateException("가입된 회원");
+            throw new IllegalStateException("이미 가입된 회원입니다.");
         }
     }
 
