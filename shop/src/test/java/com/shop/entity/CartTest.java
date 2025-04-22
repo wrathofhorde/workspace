@@ -58,7 +58,8 @@ public class CartTest {
         em.flush();
         em.clear();
 
-        Cart savedCart = cartRepository.findById(cart.getId())
+        Cart savedCart = cartRepository
+                .findById(cart.getId())
                 .orElseThrow(EntityNotFoundException::new);
         assertEquals(savedCart.getMember().getId(), member.getId());
     }
