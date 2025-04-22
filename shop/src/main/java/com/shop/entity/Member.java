@@ -39,7 +39,7 @@ public class Member {
             PasswordEncoder passwordEncoder) {
         Member member = new Member();
 
-        member.setRole(Role.USER);
+        member.setRole(Role.ADMIN);
         member.setName(memberFormDto.getName());
         member.setEmail(memberFormDto.getEmail());
         member.setAddress(memberFormDto.getAddress());

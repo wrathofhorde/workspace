@@ -21,17 +21,24 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.formLogin(formLoginCustomizer -> formLoginCustomizer
-                .loginPage("/members/login")
-                .defaultSuccessUrl("/")
-                .usernameParameter("email")
-                .failureHandler(new FormLoginAuthenticationFailureHandler()));
+        return http
+                .authorizeHttpRequests(authorizeHttpRequestsCustomizer -> authorizeHttpRequestsCustomizer
+                        .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
+                        .requestMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .anyRequest()
+                        .authenticated())
+                .formLogin(formLoginCustomizer -> formLoginCustomizer
+                        .loginPage("/members/login")
+                        .defaultSuccessUrl("/")
+                        .usernameParameter("email")
+                        .failureHandler(new FormLoginAuthenticationFailureHandler()))
+                .logout(logoutCustomizer -> logoutCustomizer
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
+                        .logoutSuccessUrl("/"))
+                .exceptionHandling(e -> e.authenticationEntryPoint(new CustomAuthenticationEntryPoint()))
+                .build();
 
-        http.logout(logoutCustomizer -> logoutCustomizer
-                .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
-                .logoutSuccessUrl("/"));
-
-        return http.build();
     }
 
     @Bean
