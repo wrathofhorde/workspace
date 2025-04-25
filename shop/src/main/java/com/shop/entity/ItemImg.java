@@ -2,7 +2,6 @@ package com.shop.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import groovyjarjarantlr4.v4.parse.ANTLRParser.throwsSpec_return;
 import jakarta.persistence.*;
 
 @Entity
