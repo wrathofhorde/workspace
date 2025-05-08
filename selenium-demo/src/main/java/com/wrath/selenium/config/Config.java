@@ -10,10 +10,17 @@ import lombok.Data;
 @Data
 public class Config {
     private String url;
+    private String mainPopup;
+    private String mainPopupButton;
 
-    public static Config loadFromJson(String filePath) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(new File(filePath), Config.class);
+    public static Config loadFromJson(String filePath) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(new File(filePath), Config.class);
+        } catch (IOException e) {
+            System.out.println("Config.loadFromJson()");
+        }
+        return null;
     }
 
     public void saveToJson(String filePath) throws IOException {
