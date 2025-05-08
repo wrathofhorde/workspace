@@ -38,24 +38,19 @@ public class Main {
         String configFile = "config-test.json";
 
         try {
-
             Trading trading = new Trading(configFile);
 
             trading.goMainPage();
             trading.moveExchangePage();
-
-            Thread.sleep(5000);
+            Thread.sleep(10000);
 
             trading.moveLoginPage();
-
             Thread.sleep(5000);
 
             trading.inputUserInfo();
-
             Thread.sleep(10000);
 
             trading.close();
-
         } catch (Exception e) {
             System.out.println(e);
         }

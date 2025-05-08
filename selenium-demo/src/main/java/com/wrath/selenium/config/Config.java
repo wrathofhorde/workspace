@@ -10,6 +10,8 @@ import lombok.Data;
 @Data
 public class Config {
     private String url;
+    private String email;
+    private String password;
     private String mainPopup;
     private String mainPopupButton;
 

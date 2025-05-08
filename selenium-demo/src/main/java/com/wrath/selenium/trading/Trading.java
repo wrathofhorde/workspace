@@ -71,16 +71,16 @@ public class Trading {
             WebDriverWait wait = browser.getWait(30);
 
             WebElement email = wait.until(ExpectedConditions.elementToBeClickable(By.id("email")));
-            email.sendKeys("test@test.com");
+            email.sendKeys(config.getEmail());
             Thread.sleep(1000);
 
             WebElement password = wait.until(ExpectedConditions.elementToBeClickable(By.id("password")));
-            password.sendKeys("12345678");
+            password.sendKeys(config.getPassword());
             Thread.sleep(1000);
 
             WebElement login = wait.until(ExpectedConditions.elementToBeClickable(By.id("loginBtn")));
             System.out.println(login);
-            login.sendKeys(Keys.RETURN);
+            // login.sendKeys(Keys.RETURN);
         } catch (Exception e) {
             System.out.println(e);
         }
