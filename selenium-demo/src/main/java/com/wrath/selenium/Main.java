@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.wrath.selenium.trading.Trading;
 import com.wrath.selenium.config.Config;
+import com.wrath.selenium.krx.Krx;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -34,7 +35,7 @@ public class Main {
         driver.quit();
     }
 
-    public static void main(String[] args) {
+    public static void testTrading() {
         String configFile = "config-test.json";
 
         try {
@@ -54,5 +55,23 @@ public class Main {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    public static void testKrx() {
+        String configFile = "config-kospi.json";
+
+        try {
+            Krx krx = new Krx(configFile);
+            krx.getMain();
+            Thread.sleep(5000);
+            krx.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void main(String[] args) {
+        testTrading();
+        // testKrx();
     }
 }

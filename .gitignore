@@ -29,3 +29,4 @@ replay_pid*
 # config file
 config.json
 config-test.json
+config-kospi.json
